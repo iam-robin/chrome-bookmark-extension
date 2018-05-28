@@ -1,12 +1,20 @@
 {
   "name": "bookmark extension",
+  "version": "0.1",
   "options_page": "options.html",
+  "permissions": [
+    "tabs"
+  ],
   "background": {
     "page": "background.html"
   },
   "browser_action": {
     "default_popup": "popup.html",
-    "default_icon": "icon-34.png"
+    "default_icon": "icon-34.png",
+    "default_title": "A popup will come here."
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
   },
   "icons": {
     "128": "icon-128.png"

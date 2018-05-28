@@ -83,6 +83,11 @@ var options = {
       filename: "background.html",
       chunks: ["background"]
     }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "src", "index.html"),
+      filename: "index.html",
+      chunks: ["index"]
+    }),
     new WriteFilePlugin()
   ]
 };
