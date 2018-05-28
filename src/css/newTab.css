@@ -1,0 +1,28 @@
+.item {
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  background-color: #DC3F55;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.item a {
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px 0 30px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.item .close {
+  text-align: center;
+  float: right;
+  color: #fff;
+  line-height: 32px;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}

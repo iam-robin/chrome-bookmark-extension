@@ -14,7 +14,7 @@
     "default_title": "A popup will come here."
   },
   "chrome_url_overrides": {
-    "newtab": "index.html"
+    "newtab": "newTab.html"
   },
   "icons": {
     "128": "icon-128.png"
