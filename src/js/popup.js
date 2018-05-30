@@ -1,5 +1,4 @@
 import "../css/popup.css";
-import hello from "./popup/example";
 
 // DOM elements
 let url = document.getElementById('url');
@@ -34,19 +33,16 @@ chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT
 function inputChanged(e) {
   if (this.id === "url") {
     bookmark.url = this.value;
-    console.log(bookmark);
   }
 
   if (this.id === "title") {
     bookmark.title = this.value;
-    console.log(bookmark);
   }
 }
 
 saveButton.onclick = function () {
   //sending a message
-  chrome.runtime.sendMessage({ bookmark: bookmark }, function (response) {
-    console.log(response);
+  chrome.runtime.sendMessage({ saveBookmark: bookmark }, function (response) {
     window.close();
   });
 };
