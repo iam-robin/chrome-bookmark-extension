@@ -5,10 +5,8 @@ export default function fetchBookmarks() {
     // elements
     let categories = [];
     let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
-    let resultsElement = document.getElementById('bookmark-results');
     let containerElement = document.getElementById('bookmark-container');
 
-    resultsElement.innerHTML = '';
     containerElement.innerHTML = '';
 
     // push all bookmark categories in categorie array
@@ -18,13 +16,17 @@ export default function fetchBookmarks() {
 
     // filter only unique categories
     categories = categories.filter(onlyUnique);
-    
 
+    //if category has backslash -> create new div inside the parent div
+    // ...
+    
+    // create category div for each unique category
     categories.forEach(function (i) {
       containerElement.innerHTML += '<div id="' + i + '">' +
       '<h2>'+ i +'</h2></div>';
     });
 
+    // render bookmarks in the specific category div
     for (let i = 0; i < bookmarks.length; i++) {
       let url = bookmarks[i].url;
       let title = bookmarks[i].title;
@@ -32,8 +34,6 @@ export default function fetchBookmarks() {
       let category = String(bookmarks[i].category);
 
       let currentCategoryElement = document.getElementById(category);
-      console.log(currentCategoryElement);
-
 
       currentCategoryElement.innerHTML += '<div class="item" id="' + id + '">' +
         '<a href="' + url + '">' + title + '</a>' +
