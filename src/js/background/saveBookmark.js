@@ -1,11 +1,13 @@
 export default function saveBookmark(request) {
   let title = request.saveBookmark.title;
   let url = request.saveBookmark.url;
+  let category = request.saveBookmark.category;
   let id = new Date().valueOf();
 
   let bookmark = {
     title: title,
     url: url,
+    category: category,
     id: id
   }
 

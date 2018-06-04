@@ -1,19 +1,49 @@
 export default function fetchBookmarks() {
+  // if bookmarks in local storage
   if (localStorage.getItem('bookmarks') != null) {
-    var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
-    var bookmarkResults = document.getElementById('bookmark-results');
 
-    bookmarkResults.innerHTML = '';
+    // elements
+    let categories = [];
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    let resultsElement = document.getElementById('bookmark-results');
+    let containerElement = document.getElementById('bookmark-container');
 
-    for (var i = 0; i < bookmarks.length; i++) {
-      var url = bookmarks[i].url;
-      var title = bookmarks[i].title;
-      var id = bookmarks[i].id;
+    resultsElement.innerHTML = '';
+    containerElement.innerHTML = '';
 
-      bookmarkResults.innerHTML += '<div class="item" id="' + id + '">' +
+    // push all bookmark categories in categorie array
+    for (let i = 0; i < bookmarks.length; i++) {
+      categories.push(bookmarks[i].category);
+    }
+
+    // filter only unique categories
+    categories = categories.filter(onlyUnique);
+    
+
+    categories.forEach(function (i) {
+      containerElement.innerHTML += '<div id="' + i + '">' +
+      '<h2>'+ i +'</h2></div>';
+    });
+
+    for (let i = 0; i < bookmarks.length; i++) {
+      let url = bookmarks[i].url;
+      let title = bookmarks[i].title;
+      let id = bookmarks[i].id;
+      let category = String(bookmarks[i].category);
+
+      let currentCategoryElement = document.getElementById(category);
+      console.log(currentCategoryElement);
+
+
+      currentCategoryElement.innerHTML += '<div class="item" id="' + id + '">' +
         '<a href="' + url + '">' + title + '</a>' +
         '<span class="close">x</span>' +
         '</div>';
     }
+  }
+
+  // get only unique values in array
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
   }
 }
