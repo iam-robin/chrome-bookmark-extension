@@ -20,7 +20,7 @@ chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT
 
     let tabUrl = tabs[0].url;
     let tabTitle = tabs[0].title;
-    let tabCategory = 'uncategorized';
+    let tabCategory = 'Uncategorized';
 
     url.value = tabUrl;
     title.value = tabTitle;
@@ -44,12 +44,22 @@ function inputChanged(e) {
   }
 
   if (this.id === "category") {
-    bookmark.category = this.value;
+    bookmark.category = uppercase(this.value);
   }
 }
 
+// convert the first letter of each word of string in upper case
+function uppercase(str) {
+  var array1 = str.split(' ');
+  var newarray1 = [];
+  for (var x = 0; x < array1.length; x++) {
+    newarray1.push(array1[x].charAt(0).toUpperCase() + array1[x].slice(1));
+  }
+  return newarray1.join(' ');
+}
+
+//sending bookmark object to background.js
 saveButton.onclick = function () {
-  //sending a message
   chrome.runtime.sendMessage({ saveBookmark: bookmark }, function (response) {
     window.close();
   });
