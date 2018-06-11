@@ -14,17 +14,11 @@ export default function fetchBookmarks() {
       categories.push(bookmarks[i].category);
     }
 
-    // filter only unique categories
-    categories = categories.filter(onlyUnique);
+    // convert array with category paths to object tree
+    categories = arrayToTree(categories);
 
-    //if category has backslash -> create new div inside the parent div
-    // ...
-    
-    // create category div for each unique category
-    categories.forEach(function (i) {
-      containerElement.innerHTML += '<div id="' + i + '">' +
-      '<h2>'+ i +'</h2></div>';
-    });
+    // generate container elements out of object tree
+    buildTree(categories, containerElement);
 
     // render bookmarks in the specific category div
     for (let i = 0; i < bookmarks.length; i++) {
@@ -32,18 +26,56 @@ export default function fetchBookmarks() {
       let title = bookmarks[i].title;
       let id = bookmarks[i].id;
       let category = String(bookmarks[i].category);
+      category = category.replace(/\//g, '_');
 
       let currentCategoryElement = document.getElementById(category);
 
-      currentCategoryElement.innerHTML += '<div class="item" id="' + id + '">' +
+      currentCategoryElement.innerHTML = '<div class="item" id="' + id + '">' +
         '<a href="' + url + '">' + title + '</a>' +
         '<span class="close">x</span>' +
-        '</div>';
+        '</div>' + currentCategoryElement.innerHTML;
     }
   }
 
-  // get only unique values in array
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
+  // Build HTML tree recursively from object.
+  function buildTree(obj, context, prefix) {
+    for (var key in obj) {
+      let div = document.createElement('div'),
+      pID = prefix ? prefix + '_' + key : key;
+
+      div.innerHTML = "<span class='title'>"+key+"</span><div class='content'></div>";
+      let content = div.children[1];
+      content.setAttribute('id', pID);
+      content.classList.add(key);
+      div.classList.add("category");
+      buildTree(obj[key], content, pID);
+      context.appendChild(div);
+    }
+  }
+
+  // format array as tree
+  function arrayToTree(arr, separator) {
+    let formatted = {};
+
+    if (!separator) {
+      separator = '/';
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+      let category = arr[i],
+        parts = category.split(separator),
+        current = formatted;
+
+      for (let e = 0; e < parts.length; e++) {
+        let lvl = parts[e];
+
+        if (!current[lvl]) {
+          current[lvl] = {};
+        }
+
+        current = current[lvl];
+      }
+    }
+    return formatted;
   }
 }
