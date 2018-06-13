@@ -16,9 +16,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   /*background-color: RGBA(63, 186, 155, .3);*/
-  background-color: RGBA(230, 233, 238, 0.03);
-  /*box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.15);
-  border: 1px solid rgba(0,0,0,0.08);*/
+  background-color: RGBA(230, 233, 238, 0.1);
   margin: 8px;
   padding: 8px;
   box-sizing: border-box;
@@ -79,4 +77,28 @@ body {
 
 .item:hover .close {
   opacity: 1;
+}
+
+
+
+/*LIGHT MODE*/
+body.lightmode {
+  background-color: #CCD0D9;
+}
+
+.lightmode .category {
+  background-color: RGBA(255, 255, 255, 0.6);
+  border: 1px solid RGBA(25, 29, 32, 0.05);
+}
+
+.lightmode .category .title {
+  color: RGBA(25, 29, 32, 0.6);
+}
+
+.lightmode .item {
+  background-color: RGBA(25, 29, 32, 0.1);
+}
+
+.lightmode .item a {
+  color: RGBA(25, 29, 32, 0.6);
 }

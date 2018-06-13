@@ -3,13 +3,17 @@ export default function saveBookmark(request) {
   let url = request.saveBookmark.url;
   let category = request.saveBookmark.category;
   let id = new Date().valueOf();
+  let favicon = request.saveBookmark.favicon;
 
   let bookmark = {
     title: title,
     url: url,
     category: category,
-    id: id
+    id: id,
+    favicon: favicon
   }
+
+  console.log(bookmark);
 
   // test if the local storage with the key 'bookmarks' is empty
   if (localStorage.getItem('bookmarks') === null) {

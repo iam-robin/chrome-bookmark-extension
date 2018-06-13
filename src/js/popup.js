@@ -21,6 +21,7 @@ chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT
     let tabUrl = tabs[0].url;
     let tabTitle = tabs[0].title;
     let tabCategory = 'Uncategorized';
+    let tabFavIcon = tabs[0].favIconUrl;
 
     url.value = tabUrl;
     title.value = tabTitle;
@@ -28,7 +29,8 @@ chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT
     bookmark = {
       url: tabUrl,
       title: tabTitle,
-      category: tabCategory
+      category: tabCategory,
+      favicon: tabFavIcon
     };
   }
 );
