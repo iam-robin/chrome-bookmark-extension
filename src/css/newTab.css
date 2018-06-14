@@ -41,18 +41,6 @@ body {
   user-select: none;
 }
 
-.item:before {
-  content: '';
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-  background-color: #3FBA9B;
-  position: absolute;
-  border-radius: 100%;
-  top: 8px;
-  left: 8px;
-}
-
 .item a {
   display: inline-block;
   color: #fff;
@@ -61,6 +49,14 @@ body {
   padding-left: 32px;
   text-decoration: none;
   font-size: 14px;
+}
+
+.item a .favicon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  height: 16px;
+  width: 16px;
 }
 
 .item .close {

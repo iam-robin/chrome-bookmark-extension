@@ -25,13 +25,16 @@ export default function fetchBookmarks() {
       let url = bookmarks[i].url;
       let title = bookmarks[i].title;
       let id = bookmarks[i].id;
+      let favicon = bookmarks[i].favicon;
       let category = String(bookmarks[i].category);
       category = category.replace(/\//g, '_');
 
       let currentCategoryElement = document.getElementById(category);
 
       currentCategoryElement.innerHTML = '<div class="item" id="' + id + '">' +
-        '<a href="' + url + '">' + title + '</a>' +
+        '<a href="' + url + '">' +
+        '<img src="'+ favicon +'" alt="favicon" class="favicon">' +
+        title + '</a>' +
         '<span class="close">x</span>' +
         '</div>' + currentCategoryElement.innerHTML;
     }

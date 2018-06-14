@@ -11,13 +11,11 @@ chrome.runtime.onMessage.addListener(
     if (request.saveBookmark) {
       saveBookmark(request);
       messageToNewTab();
-      messageCategories();
     }
 
     if (request.deleteBookmark) {
       deleteBookmark(request);
       messageToNewTab();
-      messageCategories();
     }
 
     // if request message is correct, send response to popup
