@@ -14,8 +14,6 @@ export default function saveBookmark(request) {
     favicon: favicon
   }
 
-  console.log(bookmark);
-
   // test if the local storage with the key 'bookmarks' is empty
   if (localStorage.getItem('bookmarks') === null) {
     // init array

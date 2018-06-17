@@ -46,7 +46,7 @@ export default function fetchBookmarks() {
       let div = document.createElement('div'),
       pID = prefix ? prefix + '_' + key : key;
 
-      div.innerHTML = "<span class='title'>"+key+"</span><div class='content'></div>";
+      div.innerHTML = "<span class='title'>" + key + "</span><div class='content'></div><span class='icon'></span>";
       let content = div.children[1];
       content.setAttribute('id', pID);
       content.classList.add(key);
