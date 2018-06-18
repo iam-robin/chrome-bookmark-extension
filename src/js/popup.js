@@ -1,18 +1,35 @@
 import "../css/popup.css";
+import arrayToTree from "./general/arrayToTree";
 
 // DOM elements
 let url = document.getElementById('url');
 let title = document.getElementById('title');
 let category = document.getElementById('category');
+let categoryContainer = document.getElementById('categoryContainer');
 let saveButton = document.getElementById('save');
 
-// bookmark object
+// objects / variables
 let bookmark;
+let existentCategories = [];
+let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
 
 // events
 url.addEventListener("input", inputChanged);
 title.addEventListener("input", inputChanged);
 category.addEventListener("input", inputChanged);
+
+
+// push all bookmark categories in categorie array
+for (let i = 0; i < bookmarks.length; i++) {
+  existentCategories.push(bookmarks[i].category);
+}
+
+existentCategories = arrayToTree(existentCategories, '/');
+console.log(existentCategories);
+
+for (var key in existentCategories) {
+  categoryContainer.innerHTML += key + " ";
+}
 
 // get tab informations
 chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT },
@@ -46,18 +63,8 @@ function inputChanged(e) {
   }
 
   if (this.id === "category") {
-    bookmark.category = uppercase(this.value);
+    bookmark.category = this.value.toUpperCase();
   }
-}
-
-// convert the first letter of each word of string in upper case
-function uppercase(str) {
-  var array1 = str.split(' ');
-  var newarray1 = [];
-  for (var x = 0; x < array1.length; x++) {
-    newarray1.push(array1[x].charAt(0).toUpperCase() + array1[x].slice(1));
-  }
-  return newarray1.join(' ');
 }
 
 //sending bookmark object to background.js

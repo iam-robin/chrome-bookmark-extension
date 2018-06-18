@@ -1,3 +1,5 @@
+import arrayToTree from "../general/arrayToTree";
+
 export default function fetchBookmarks() {
   // if bookmarks in local storage
   if (localStorage.getItem('bookmarks') != null) {
@@ -15,7 +17,7 @@ export default function fetchBookmarks() {
     }
 
     // convert array with category paths to object tree
-    categories = arrayToTree(categories);
+    categories = arrayToTree(categories, '/');
 
     // generate container elements out of object tree
     buildTree(categories, containerElement);
@@ -54,31 +56,5 @@ export default function fetchBookmarks() {
       buildTree(obj[key], content, pID);
       context.appendChild(div);
     }
-  }
-
-  // format array as tree
-  function arrayToTree(arr, separator) {
-    let formatted = {};
-
-    if (!separator) {
-      separator = '/';
-    }
-
-    for (let i = 0; i < arr.length; i++) {
-      let category = arr[i],
-        parts = category.split(separator),
-        current = formatted;
-
-      for (let e = 0; e < parts.length; e++) {
-        let lvl = parts[e];
-
-        if (!current[lvl]) {
-          current[lvl] = {};
-        }
-
-        current = current[lvl];
-      }
-    }
-    return formatted;
   }
 }

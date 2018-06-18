@@ -3,6 +3,13 @@ body {
   user-select: none;
 }
 
+#mode-toggle {
+  height: 10px;
+  width: 10px;
+  background-color: #E0E2EA;
+  cursor: pointer;
+}
+
 #bookmark-container {
   margin: 40px auto;
   max-width: 1200px;
