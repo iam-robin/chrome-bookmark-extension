@@ -18,17 +18,36 @@ url.addEventListener("input", inputChanged);
 title.addEventListener("input", inputChanged);
 category.addEventListener("input", inputChanged);
 
-
 // push all bookmark categories in categorie array
-for (let i = 0; i < bookmarks.length; i++) {
-  existentCategories.push(bookmarks[i].category);
+if (bookmarks) {
+  for (let i = 0; i < bookmarks.length; i++) {
+    existentCategories.push(bookmarks[i].category);
+  }
 }
 
-existentCategories = arrayToTree(existentCategories, '/');
-console.log(existentCategories);
+if (existentCategories.length) {
+  existentCategories = arrayToTree(existentCategories, '/');
+  console.log(existentCategories);
+  categoryTree(existentCategories, categoryContainer);
+}
 
-for (var key in existentCategories) {
-  categoryContainer.innerHTML += key + " ";
+function categoryTree(obj, parent, start = true) {
+  for (var key in obj) {
+    let div = document.createElement("div");
+    div.textContent = key;
+    div.classList.add("category-sug");
+    if (parent.children) parent.className += " bold";
+    if (!start) div.className = "normal hide"
+
+    div.addEventListener('click', function (e) {
+      e.stopPropagation()
+      Array.from(div.children).forEach(child => {
+        child.classList.toggle('hide')
+      })
+    })
+    categoryTree(obj[key], div, false)
+    parent.appendChild(div)
+  }
 }
 
 // get tab informations

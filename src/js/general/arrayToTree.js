@@ -1,6 +1,5 @@
 // format array as tree
 export default function arrayToTree(arr, separator) {
-  console.log("arrayToTree runs");
   let formatted = {};
 
   for (let i = 0; i < arr.length; i++) {
