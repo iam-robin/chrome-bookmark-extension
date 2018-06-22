@@ -37,7 +37,7 @@ export default function fetchBookmarks() {
         '<a href="' + url + '">' +
         '<img src="'+ favicon +'" alt="favicon" class="favicon">' +
         title + '</a>' +
-        '<span class="close">x</span>' +
+        '<span class="close"></span>' +
         '</div>' + currentCategoryElement.innerHTML;
     }
   }
