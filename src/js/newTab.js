@@ -3,11 +3,13 @@ import fetchBookmarks from "./newTab/fetchBookmarks";
 import deleteBookmark from "./newTab/deleteBookmark";
 import categoryCollapse from "./newTab/categoryCollapse";
 import toggleMode from "./newTab/toggleMode";
+import toggleEdit from "./newTab/toggleEdit";
 
 fetchBookmarks();
 categoryCollapse();
 deleteBookmark();
 toggleMode();
+toggleEdit();
 
 // get messages
 chrome.runtime.onMessage.addListener(
