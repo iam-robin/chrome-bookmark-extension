@@ -29,15 +29,32 @@ button {
   border: none;
 }
 
-.category-sug {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #E8EAF0;
-  margin: 0px 5px 5px 0;
-  font-size: 10px;
-  cursor: pointer;
+.category {
+  color: black;
+  display: block;
+  line-height: 40px;
+  background-color: RGBA(83, 86, 90, 0.2);
+  margin: 8px;
 }
 
-.hide {display: none;}
-.normal {font-weight: normal;}
-.bold {font-weight: bold;}
+.category .category {
+  display: inline-block;
+  margin: 0 8px;
+  padding: 0 8px;
+}
+
+.category.hide {
+  display: none;
+}
+
+.category.normal {
+  font-weight: normal;
+}
+
+.category.bold {
+  font-weight: bold;
+}
+
+.category.active {
+  color: red;
+}

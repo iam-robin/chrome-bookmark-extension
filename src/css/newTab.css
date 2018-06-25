@@ -1,6 +1,6 @@
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #3C4144;
+  background-color: #454A4E;
   user-select: none;
   transition: all 0.2s ease-in-out;
 }
@@ -27,7 +27,7 @@ body {
   display: flex;
   position: relative;
   align-items: flex-start;
-  background-color: RGBA(25, 29, 32, 0.25);
+  background-color: RGBA(9, 10, 11, 0.12);
   margin: 16px 0;
   padding: 8px;
   box-sizing: border-box;
@@ -83,7 +83,7 @@ body {
   position: relative;
   display: inline-block;
   margin: 6px;
-  background-color: RGBA(101, 109, 120, 0.6);
+  background-color: rgba(153, 162, 173, 0.15);
   user-select: none;
   border-radius: 10px;
   transition: all 0.2s ease-in-out;
@@ -107,7 +107,7 @@ body {
 }
 
 .item a:focus {
-  background-color: RGBA(170, 178, 189, 0.3);
+  background-color: rgba(153, 162, 173, 0.4);
   box-shadow: 0px 10px 30px 0px rgba(20, 22, 28, 0.2);
   border: none;
   outline: none;
@@ -123,12 +123,6 @@ body {
   left: 16px;
   height: 16px;
   width: 16px;
-  opacity: 1;
-  transition: opacity .2s ease-in-out;
-}
-
-.item.delete a .favicon {
-  opacity: 0;
 }
 
 .item .close {
@@ -138,10 +132,13 @@ body {
 
 .item.delete .close {
   position: absolute;
-  top: 8px;
-  left: 16px;
-  height: 16px;
-  width: 16px;
+  top: -4px;
+  right: -4px;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: #5E656C;
+  box-shadow: 0px 5px 20px 0px rgba(20, 22, 28, 0.08);
   cursor: pointer;
   opacity: 1;
   background-image: url('../img/close.svg');
@@ -152,11 +149,11 @@ body {
 
 /*LIGHT MODE*/
 body.lightmode {
-  background-color: RGBA(203, 209, 227, 0.2);
+  background-color: #EDEFF3;
 }
 
 .lightmode .category {
-  background-color: RGBA(170, 178, 189, 0.20)
+  background-color: RGBA(127, 135, 147, 0.10)
 }
 
 .lightmode .category .title {
@@ -173,7 +170,7 @@ body.lightmode {
 }
 
 .lightmode .item {
-  background-color: RGBA(255, 255, 255, 0.8);
+  background-color: RGBA(255, 255, 255, 0.6);
 }
 
 .lightmode .item:hover {
@@ -187,4 +184,8 @@ body.lightmode {
 .lightmode .item a:focus {
   background-color: #fff;
   box-shadow: 0px 10px 30px 0px rgba(20, 22, 28, 0.05);
+}
+
+.lightmode .item.delete .close {
+  background-color: #fff;
 }

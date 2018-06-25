@@ -2,10 +2,10 @@ import "../css/popup.css";
 import arrayToTree from "./general/arrayToTree";
 
 // DOM elements
-let url = document.getElementById('url');
-let title = document.getElementById('title');
-let category = document.getElementById('category');
-let categoryContainer = document.getElementById('categoryContainer');
+let urlInput = document.getElementById('url-input');
+let titleInput = document.getElementById('title-input');
+let categoryInput = document.getElementById('category-input');
+let existentCategoryContainer = document.getElementById('categoryContainer');
 let saveButton = document.getElementById('save');
 
 // objects / variables
@@ -14,39 +14,63 @@ let existentCategories = [];
 let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
 
 // events
-url.addEventListener("input", inputChanged);
-title.addEventListener("input", inputChanged);
-category.addEventListener("input", inputChanged);
+urlInput.addEventListener("input", inputChanged);
+titleInput.addEventListener("input", inputChanged);
+categoryInput.addEventListener("input", inputChanged);
 
 // push all bookmark categories in categorie array
 if (bookmarks) {
   for (let i = 0; i < bookmarks.length; i++) {
     existentCategories.push(bookmarks[i].category);
   }
-}
-
-if (existentCategories.length) {
   existentCategories = arrayToTree(existentCategories, '/');
-  console.log(existentCategories);
-  categoryTree(existentCategories, categoryContainer);
+  categoryTree(existentCategories, existentCategoryContainer);
 }
 
 function categoryTree(obj, parent, start = true) {
   for (var key in obj) {
     let div = document.createElement("div");
     div.textContent = key;
-    div.classList.add("category-sug");
+    div.classList.add("category");
     if (parent.children) parent.className += " bold";
-    if (!start) div.className = "normal hide"
+    if (!start) div.className = "normal hide category";
 
     div.addEventListener('click', function (e) {
       e.stopPropagation()
       Array.from(div.children).forEach(child => {
-        child.classList.toggle('hide')
+        child.classList.toggle('hide');
       })
+      categoryInput.value = getParents(e.target);
+      bookmark.category = getParents(e.target);
     })
     categoryTree(obj[key], div, false)
     parent.appendChild(div)
+  }
+}
+
+function getParents(node, path) {
+  let thisName = node.childNodes[0].textContent;
+  path = path ? (thisName + "/" + path) : thisName;
+  console.log(node.parentNode.className.split(/\s+/).indexOf("categoryContainer"));
+  if (node.parentNode.className.split(/\s+/).indexOf("categoryContainer") !== -1) {
+    return path;
+  } else {
+    return getParents(node.parentNode, path);
+  }
+}
+
+// popup input change saved into bookmark object
+function inputChanged(e) {
+  if (this.id === "url-input") {
+    bookmark.url = this.value;
+  }
+
+  if (this.id === "title-input") {
+    bookmark.title = this.value;
+  }
+
+  if (this.id === "category-input") {
+    bookmark.category = this.value.toUpperCase();
   }
 }
 
@@ -59,8 +83,8 @@ chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT
     let tabCategory = 'Uncategorized';
     let tabFavIcon = tabs[0].favIconUrl;
 
-    url.value = tabUrl;
-    title.value = tabTitle;
+    urlInput.value = tabUrl;
+    titleInput.value = tabTitle;
 
     bookmark = {
       url: tabUrl,
@@ -70,21 +94,6 @@ chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT
     };
   }
 );
-
-// input change saved into bookmark object
-function inputChanged(e) {
-  if (this.id === "url") {
-    bookmark.url = this.value;
-  }
-
-  if (this.id === "title") {
-    bookmark.title = this.value;
-  }
-
-  if (this.id === "category") {
-    bookmark.category = this.value.toUpperCase();
-  }
-}
 
 //sending bookmark object to background.js
 saveButton.onclick = function () {
