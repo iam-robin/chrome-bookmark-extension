@@ -39,8 +39,15 @@ export default function fetchBookmarks() {
         title + '</a>' +
         '<span class="close"></span>' +
         '</div>' + currentCategoryElement.innerHTML;
+
+      if(favicon == "") {
+        let bookmark = document.getElementById(id);
+        bookmark.childNodes[0].style.paddingLeft = "24px";
+        bookmark.childNodes[0].childNodes[0].style.display = "none";
+      }
     }
   }
+
 
   // Build HTML tree recursively from object.
   function buildTree(obj, context, prefix) {
