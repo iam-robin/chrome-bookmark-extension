@@ -90,7 +90,7 @@ body {
 }
 
 .item:hover {
-  box-shadow: 0px 10px 30px 0px rgba(20, 22, 28, 0.2);
+  background-color: rgba(153, 162, 173, 0.3);
 }
 
 .item a {
@@ -107,8 +107,7 @@ body {
 }
 
 .item a:focus {
-  background-color: rgba(153, 162, 173, 0.4);
-  box-shadow: 0px 10px 30px 0px rgba(20, 22, 28, 0.2);
+  background-color: rgba(153, 162, 173, 0.5);
   border: none;
   outline: none;
 }
@@ -153,7 +152,7 @@ body.lightmode {
 }
 
 .lightmode .category {
-  background-color: RGBA(127, 135, 147, 0.10)
+  background-color: RGBA(127, 135, 147, 0.15)
 }
 
 .lightmode .category .title {
@@ -165,16 +164,15 @@ body.lightmode {
 }
 
 .lightmode .category.collapsed .icon {
-  color: RGBA(25, 29, 32, 0.4);
-  filter: brightness(.5);
+  filter: brightness(.6);
 }
 
 .lightmode .item {
-  background-color: RGBA(255, 255, 255, 0.6);
+  background-color: RGBA(255, 255, 255, 0.5);
 }
 
 .lightmode .item:hover {
-  box-shadow: 0px 10px 30px 0px rgba(20, 22, 28, 0.05);
+  background-color: RGBA(255, 255, 255, 0.8);
 }
 
 .lightmode .item a {
@@ -182,10 +180,12 @@ body.lightmode {
 }
 
 .lightmode .item a:focus {
-  background-color: #fff;
-  box-shadow: 0px 10px 30px 0px rgba(20, 22, 28, 0.05);
+  background-color: RGBA(255, 255, 255, 1.0);
+  color: RGBA(25, 29, 32, 1.0);
 }
 
 .lightmode .item.delete .close {
   background-color: #fff;
 }
+
+/*box-shadow: 0px 10px 30px 0px rgba(20, 22, 28, 0.05);*/
