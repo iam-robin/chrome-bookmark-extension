@@ -80,7 +80,7 @@ chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT
 
     let tabUrl = tabs[0].url;
     let tabTitle = tabs[0].title;
-    let tabCategory = 'Uncategorized';
+    let tabCategory = '';
     let tabFavIcon = tabs[0].favIconUrl;
 
     urlInput.value = tabUrl;
