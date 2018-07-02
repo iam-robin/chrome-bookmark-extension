@@ -1,6 +1,13 @@
 import arrayToTree from "../general/arrayToTree";
 
-export default function fetchBookmarks() {
+export default function fetchBookmarks(currentStates) {
+
+  if (currentStates.lightmode) {
+    document.getElementsByTagName("BODY")[0].classList.add('lightmode');
+  } else {
+    document.getElementsByTagName("BODY")[0].classList.remove('lightmode');
+  }
+
   // if bookmarks in local storage
   if (localStorage.getItem('bookmarks') != null) {
 

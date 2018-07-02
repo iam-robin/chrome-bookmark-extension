@@ -2,14 +2,13 @@ body {
   font-family: 'Lato', sans-serif;
   background-color: #454A4E;
   user-select: none;
-  transition: all 0.2s ease-in-out;
+  transition: all .1s ease-in-out;
 }
 
 .toggle {
   display: inline-block;
   margin-right: 10px;
-  height: 10px;
-  width: 10px;
+  padding: 4px;
   background-color: #E0E2EA;
   cursor: pointer;
 }
@@ -27,12 +26,12 @@ body {
   display: flex;
   position: relative;
   align-items: flex-start;
-  background-color: RGBA(9, 10, 11, 0.12);
+  background-color: RGBA(9, 10, 11, 0.08);
   margin: 16px 0;
   padding: 8px;
   box-sizing: border-box;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all .1s ease-in-out;
 }
 
 .category.collapsed {
@@ -53,8 +52,8 @@ body {
   font-size: 11px;
   letter-spacing: 1.5px;
   font-weight: 700;
-  margin-top: 18px;
-  transition: all 0.2s ease-in-out;
+  margin-top: 13px;
+  transition: all .1s ease-in-out;
 }
 
 .category.collapsed .title {
@@ -82,38 +81,44 @@ body {
 .item {
   position: relative;
   display: inline-block;
-  margin: 6px;
+  margin: 4px;
   background-color: rgba(153, 162, 173, 0.15);
   user-select: none;
   border-radius: 10px;
-  transition: all 0.2s ease-in-out;
+  transition: background-color .1s ease-in-out;
 }
 
 .item:hover {
-  background-color: rgba(153, 162, 173, 0.3);
+  background-color: rgba(153, 162, 173, 0.2);
 }
 
 .item a {
   position: relative;
   display: inline-block;
   border-radius: 10px;
-  color: rgba(237, 239, 243, 0.8);
+  color: rgba(237, 239, 243, 0.6);
   line-height: 32px;
   padding: 0 24px 0 40px;
   font-weight: 400;
   text-decoration: none;
   font-size: 13px;
-  transition: all 0.2s ease-in-out;
+  transition: all .1s ease-in-out;
 }
 
 .item a:focus {
-  background-color: rgba(153, 162, 173, 0.5);
+  background-color: rgba(153, 162, 173, 0.2);
+  color: rgba(237, 239, 243, 0.8);
   border: none;
   outline: none;
 }
 
 .item:hover a {
-  color: rgba(237, 239, 243, 1.0);
+  color: rgba(237, 239, 243, 0.8);
+}
+
+.item a.shrink {
+  font-size: 0;
+  padding-right: 8px;
 }
 
 .item a .favicon {
@@ -126,7 +131,7 @@ body {
 
 .item .close {
   opacity: 0;
-  transition: opacity .2s ease-in-out;
+  transition: opacity .1s ease-in-out;
 }
 
 .item.delete .close {
@@ -146,13 +151,52 @@ body {
   background-size: 8px;
 }
 
+.item.dragged {
+  z-index: 999;
+  box-shadow: 0px 5px 30px 0px RGBA(9, 10, 11, 0.1);
+}
+
+.item.dragged a {
+  background-color: #595E65;
+}
+
+.item.dragged a {
+  cursor: grabbing;	
+}
+
+.item.can-drop a {
+  text-decoration: line-through;	
+}
+
+.item.drop-ok {
+  display: none;
+}
+
+.dropzone {
+  display: none;
+	height: 8%;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background-color: #ED5564;
+}
+
+.dropzone.drop-active {
+  display: block;
+}
+
+.dropzone.drop-target {
+  background-color: #DF505E;
+}
+
 /*LIGHT MODE*/
 body.lightmode {
   background-color: #EDEFF3;
 }
 
 .lightmode .category {
-  background-color: RGBA(127, 135, 147, 0.15)
+  background-color: RGBA(127, 135, 147, 0.1);
 }
 
 .lightmode .category .title {
@@ -168,7 +212,7 @@ body.lightmode {
 }
 
 .lightmode .item {
-  background-color: RGBA(255, 255, 255, 0.6);
+  background-color: RGBA(255, 255, 255, 0.8);
 }
 
 .lightmode .item:hover {
@@ -176,7 +220,7 @@ body.lightmode {
 }
 
 .lightmode .item a {
-  color: RGBA(25, 29, 32, 0.8);
+  color: RGBA(25, 29, 32, 0.7);
 }
 
 .lightmode .item a:focus {
