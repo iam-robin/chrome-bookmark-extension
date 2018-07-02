@@ -27,7 +27,7 @@ chrome.runtime.onMessage.addListener(
     if (request.message == "reload") {
       let states = JSON.parse(localStorage.getItem('states'));
       fetchBookmarks(currentStates);
-      deleteBookmark(currentStates);
+      categoryCollapse();
       deleteBookmark();
     }
 });
