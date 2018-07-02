@@ -8,7 +8,7 @@ export default function deleteBookmark() {
     items[i].children[0].addEventListener('click', function (e) {
       if (drag) {
         drag = false;
-        e.preventDefault()
+        e.preventDefault();
       }
     });
   }

@@ -152,6 +152,7 @@ body {
 }
 
 .item.dragged {
+  cursor: grabbing !important;	
   z-index: 999;
   box-shadow: 0px 5px 30px 0px RGBA(9, 10, 11, 0.1);
 }
@@ -161,7 +162,7 @@ body {
 }
 
 .item.dragged a {
-  cursor: grabbing;	
+  cursor: grabbing !important;	
 }
 
 .item.can-drop a {
@@ -174,7 +175,9 @@ body {
 
 .dropzone {
   display: none;
-	height: 8%;
+  align-items: center;
+  justify-content: center;
+	height: 72px;
 	width: 100%;
 	position: fixed;
 	bottom: 0;
@@ -182,12 +185,31 @@ body {
 	background-color: #ED5564;
 }
 
+.dropzone .icon-trash {
+  width: 60px;
+  height: 50px;
+  fill: #fff;
+}
+
+.dropzone .trash-lid {
+  transform-origin: 80% 50%;
+  transition: transform 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
 .dropzone.drop-active {
-  display: block;
+  display: flex;
+}
+
+.dropzone.drop-active .icon-trash {
+  display: block !important;
 }
 
 .dropzone.drop-target {
   background-color: #DF505E;
+}
+
+.dropzone.drop-target .trash-lid {
+  transform: translateY(-3px) rotate(30deg);
 }
 
 /*LIGHT MODE*/
