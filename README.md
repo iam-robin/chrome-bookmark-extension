@@ -9,7 +9,7 @@
 5. Run `npm run start`.
 
 
-## Load the extension on Chrome Browser
+## Load the extension into Chrome Browser
 
 1. Access `chrome://extensions/` in Chrome Browser.
 2. Activate `Developer mode`
