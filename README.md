@@ -20,4 +20,5 @@
 
 -------------
 This Project is based on the Webpack Chrome Extension Boilerplate of Samuel Simões
+
 Samuel Simões ~ [@samuelsimoes](https://twitter.com/samuelsimoes) ~ [Blog](http://blog.samuelsimoes.com/)
