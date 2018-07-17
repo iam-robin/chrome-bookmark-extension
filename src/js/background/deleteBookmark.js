@@ -4,7 +4,7 @@ export default function deleteBookmark(request) {
   // get bookmarks from local storage
   let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
   //loop throught bookmarks
-  for (var i = 0; i < bookmarks.length; i++) {
+  for (let i = 0; i < bookmarks.length; i++) {
     if (bookmarks[i].id == deleteID) {
       console.log("remove");
       //remove from array
