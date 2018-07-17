@@ -7,10 +7,8 @@ import toggleShrink from "./newTab/toggleShrink";
 import deleteBookmark from "./newTab/deleteBookmark";
 
 let states = JSON.parse(localStorage.getItem('states'));
-
-let currentStates = {
-  lightmode: states[0].lightmode
-}
+let lightmode = !states ? true : states[0].lightmode;
+let currentStates = {lightmode: lightmode};
 
 fetchBookmarks(currentStates);
 categoryCollapse();
