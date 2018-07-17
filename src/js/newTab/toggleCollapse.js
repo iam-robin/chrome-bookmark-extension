@@ -1,19 +1,15 @@
 export default function toggleCollapse() {
-  let count = 0;
+  let isCollapsed = false;
   document.getElementById('collapse-toggle').addEventListener("click", function () {
     let categories = document.getElementsByClassName("category");
     for (var i = 0; i < categories.length; ++i) {
       let category = categories[i];
-      if (count === 0) {
+      if (!isCollapsed) {
         category.classList.add('collapsed');
       } else {
         category.classList.remove('collapsed');
       }
     }
-    if (count == 0) {
-      count = 1;
-    } else {
-      count = 0;
-    }
+    isCollapsed = !isCollapsed;
   });
 }
