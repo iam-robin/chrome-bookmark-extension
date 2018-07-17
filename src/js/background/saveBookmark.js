@@ -17,14 +17,14 @@ export default function saveBookmark(request) {
   // test if the local storage with the key 'bookmarks' is empty
   if (localStorage.getItem('bookmarks') === null) {
     // init array
-    var bookmarks = [];
+    let bookmarks = [];
     // add bookmark object to array
     bookmarks.push(bookmark);
     // parse array of objects to string and set to local storage
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
   } else {
     // get bookmarks from local storage and parse to JSON
-    var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
     // add bookmark to array
     bookmarks.push(bookmark);
     // re-set back to local storage
